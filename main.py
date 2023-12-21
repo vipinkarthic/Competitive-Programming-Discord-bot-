@@ -8,6 +8,7 @@ import json
 import datetime
 import _strptime
 import discord.ext.commands
+from keepalive import keep_alive
 
 def run():
     def sortDates(datesList):
@@ -187,7 +188,8 @@ def run():
         channelnew = bot.get_channel(1185950938310131782)
         await channelnew.send("@everyone THIS IS A REMINDER TO THE CONTEST")
         await channelnew.send(embed=embed)
-        
+      
+    keep_alive()  
     bot.run(settings.DISCORD_API_SECRET)
 
         
