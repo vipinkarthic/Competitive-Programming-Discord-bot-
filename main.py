@@ -9,6 +9,7 @@ import datetime
 import _strptime
 import discord.ext.commands
 from keepalive import keep_alive
+from pagecreation import PaginationView
 
 def run():
     def sortDates(datesList):
@@ -135,6 +136,7 @@ def run():
         
     @bot.hybrid_command()
     @commands.has_role('mod')
+    @commands.has_role('admin')
     async def remind(ctx, int = 1, pingc = True):
         currentserver = ctx.author.guild
 
@@ -143,7 +145,7 @@ def run():
         href = None
         event = None
         start = None
-        end = None
+        # end = None
         duration = None
         dt = {}
         sorted_datetime_list = []
@@ -210,6 +212,25 @@ def run():
                     channelnew = bot.get_channel(1185950938310131782)
                     await channelnew.send(embed=embedslist[i])
                     
+                    
+    @bot.command()
+    @commands.has_role('mod')
+    @commands.has_role('admin')
+    async def questions(ctx, greater = 800, lesser = 900):
+        linkbefore  = 'https://clist.by:443/api/v4/problem/?username=hh17&api_key=97fef2c489b2da5496452919d49865ea74c305c3&resource=codeforces.com&'
+        rating_gt = 'rating__gte=' + str(greater) + '&'
+        rating_lt = 'rating__lte=' + str(lesser) + '&'
+        linkafter = 'order_by=rating&limit=50&offset=50'
+        finallink = linkbefore + rating_gt + rating_lt + linkafter
+        linkquestion = requests.get(finallink)
+        questionjson = linkquestion.json()
+        data = [(i['name'], i['rating'], i['url']) for i in questionjson['objects']]
+        pv = PaginationView()
+        pv.data = data
+        await pv.send(ctx)
+        
+        
+        
 
       
     keep_alive()  
