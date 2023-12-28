@@ -57,7 +57,7 @@ def run():
             startnew2 = start.replace('.','/')
             end = i['end']
             endnew = end.replace('T',' ')
-            endnew2 = start.replace('.','/')
+            endnew2 = end.replace('.','/')
             duration = i['duration']
             href = i['href']
             host = i['host']
@@ -136,7 +136,6 @@ def run():
         
     @bot.hybrid_command()
     @commands.has_role('mod')
-    @commands.has_role('admin')
     async def remind(ctx, int = 1, pingc = True):
         currentserver = ctx.author.guild
 
@@ -187,16 +186,16 @@ def run():
         #         continue
         #     channel = await i.create_dm()
         #     await channel.send(embed=embed)
+        
+        channelnew = bot.get_channel(1185950938310131782)
 
         if(int == 0):
             if(pingc == True):
                 await ctx.send("Reminder sent to all members of the server")
-                channelnew = bot.get_channel(1185950938310131782)
                 await channelnew.send("@everyone THIS IS A REMINDER FOR THE CONTEST")
                 await channelnew.send(embed=embedslist[0])
             else:   
                 await ctx.send("Reminder sent to all members of the server")
-                channelnew = bot.get_channel(1185950938310131782)
                 await channelnew.send("HEY EVERYONE THIS IS A REMINDER FOR THE CONTEST")
                 await channelnew.send(embed=embedslist[0])
         else:
@@ -204,12 +203,10 @@ def run():
             if(pingc == True):
                 await channelnew.send("@everyone THIS IS A REMINDER FOR THE CONTEST")
                 for i in range(3):
-                    channelnew = bot.get_channel(1185950938310131782)
                     await channelnew.send(embed=embedslist[i])
             else:
                 await channelnew.send("HEY EVERYONE THIS IS A REMINDER FOR THE CONTEST")
                 for i in range(3):
-                    channelnew = bot.get_channel(1185950938310131782)
                     await channelnew.send(embed=embedslist[i])
                     
                     
