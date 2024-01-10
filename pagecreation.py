@@ -29,7 +29,7 @@ class PaginationView(discord.ui.View):
             self.first_page_button.disabled = True
             self.prev_button.disabled = True
             self.first_page_button.style = discord.ButtonStyle.gray
-            self.prev_button.style = discord.ButtonStyle.gray
+            # # self.prev_button.style = discord.ButtonStyle.gray
         else:
             self.first_page_button.disabled = False
             self.prev_button.disabled = False
