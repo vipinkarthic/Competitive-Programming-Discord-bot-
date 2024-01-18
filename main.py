@@ -4,11 +4,8 @@ import json
 import settings
 import discord
 from discord.ext import commands
-import json
-import datetime
 import _strptime
 import discord.ext.commands
-from keepalive import keep_alive
 from pagecreation import PaginationView
 
 def run():
