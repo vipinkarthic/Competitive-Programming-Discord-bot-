@@ -230,7 +230,7 @@ def run():
         
 
       
-    keep_alive()  
+   # keep_alive()  
     bot.run(settings.DISCORD_API_SECRET)
 
         
